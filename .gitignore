@@ -1,0 +1,46 @@
+# DO NOT IGNORE SOURCE AND TEST CODE
+!**/src/main/**
+!**/src/test/**
+
+target/
+
+## Maven local settings
+.mvn/jvm.config
+.mvn/maven.config
+.mvn/wrapper/maven-wrapper.jar
+**/.mvn/jvm.config
+**/.mvn/maven.config
+**/.profiler/*.html
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.metadata
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+**/*.iml
+**/.idea
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### MacOS ###
+**/.DS_Store
+
