@@ -88,6 +88,11 @@ class PersistingLocationServiceTest {
             public boolean exists(String city, String country) {
                 return false;
             }
+
+            @Override
+            public Optional<Location> findByCity(String city) {
+                return null;
+            }
         };
         var cut = new PersistingLocationService(repository);
 
@@ -165,6 +170,11 @@ class PersistingLocationServiceTest {
             @Override
             public boolean exists(String city, String country) {
                 return true;
+            }
+
+            @Override
+            public Optional<Location> findByCity(String city) {
+                return null;
             }
         };
         var cut = new PersistingLocationService(repository);
@@ -248,6 +258,11 @@ class PersistingLocationServiceTest {
             @Override
             public boolean exists(String city, String country) {
                 return false;
+            }
+
+            @Override
+            public Optional<Location> findByCity(String city) {
+                return null;
             }
         };
         var cut = new PersistingLocationService(repository);
