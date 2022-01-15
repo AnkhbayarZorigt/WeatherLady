@@ -27,7 +27,7 @@ public class LocationCommands {
     public String listLocations() {
         List<Location> locations = service.listLocations();
         return locations.stream()
-                .map(Location::toString)
-                .collect(Collectors.joining());
+                .map(l -> l.getCity() + " (" + l.getCountry() + ")")
+                .collect(Collectors.joining("\n"));
     }
 }
