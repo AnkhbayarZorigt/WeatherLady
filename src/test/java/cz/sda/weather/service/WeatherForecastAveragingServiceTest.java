@@ -19,6 +19,6 @@ class WeatherForecastAveragingServiceTest {
         ));
 
         assertThat(cut.getAveragedForecast(null, null))
-                .isEqualTo("10.5 °C");
+                .isEqualTo(new BigDecimal("10.5"));
     }
 }

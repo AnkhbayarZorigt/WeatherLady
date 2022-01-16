@@ -15,16 +15,18 @@ public class PersistingWeatherForecastService implements WeatherForecastService 
 
     private final WeatherForecastRepository weatherForecastRepository;
     private final LocationRepository locationRepository;
+    private final WeatherForecastAveragingService averagingService;
 
     @Override
     public WeatherForecast getForecast(String city, LocalDate date) {
         var location = locationRepository
                 .findByCity(city)
                 .orElseThrow(() -> new IllegalArgumentException(city + " is not a tracked location!"));
+        var avgTmp = averagingService.getAveragedForecast(city, date);
         var weatherForecast = new WeatherForecast();
         weatherForecast.setLocation(location);
         weatherForecast.setDate(date);
-        weatherForecast.setTemperature("-2 °C");
+        weatherForecast.setTemperature(avgTmp + " °C");
         return weatherForecastRepository.save(weatherForecast);
     }
 }

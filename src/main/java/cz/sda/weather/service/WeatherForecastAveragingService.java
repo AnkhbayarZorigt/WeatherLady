@@ -16,14 +16,16 @@ public class WeatherForecastAveragingService {
 
     private final List<WeatherForecastDownloader> weatherForecastDownloaders;
 
-    public String getAveragedForecast(String city, LocalDate date) {
+    public BigDecimal getAveragedForecast(String city, LocalDate date) {
         List<BigDecimal> temperatures = weatherForecastDownloaders.stream()
                 .map(i -> i.getTemperature(city, date))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        BigDecimal avg = temperatures.stream()
+        if (temperatures.size() == 0) {
+            throw new IllegalStateException("No weather forecasts to average for " + city + " on " + date);
+        }
+        return temperatures.stream()
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
                 .divide(new BigDecimal(temperatures.size()), RoundingMode.HALF_UP);
-        return avg.toString() + " °C";
     }
 }
